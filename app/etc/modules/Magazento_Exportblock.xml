@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magazento_Exportblock>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magazento_Exportblock>
+    </modules>
+</config> 

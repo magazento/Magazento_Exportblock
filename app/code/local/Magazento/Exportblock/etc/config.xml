@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Magazento_Exportblock>
+            <version>1.1.2</version>
+        </Magazento_Exportblock>
+    </modules>
+    
+    <global>
+        <rewrite>
+            <mage_adminhtml_system_variable>
+                <from><![CDATA[#^/exportblock/system_variable#]]>
+                </from>
+                <to>/admin/system_variable</to>
+            </mage_adminhtml_system_variable>
+        </rewrite>
+        <models>
+            <exportblock>
+                <class>Magazento_Exportblock_Model</class>
+                <resourceModel>exportblock_mysql4</resourceModel>
+            </exportblock>
+            <exportblock_mysql4>
+                <class>Magazento_Exportblock_Model_Mysql4</class>
+                <entities>
+                    <item>
+                        <table>magazento_exportblock_item</table>
+                    </item>
+                    <item_related>
+                        <table>magazento_exportblock_item_related</table>
+                    </item_related>
+                    <item_store>
+                        <table>magazento_exportblock_item_store</table>
+                    </item_store>
+                </entities>
+            </exportblock_mysql4>
+        </models>
+        <resources>
+            <exportblock_setup>
+                <setup>
+                    <module>Magazento_Exportblock</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </exportblock_setup>
+            <exportblock_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </exportblock_write>
+            <exportblock_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </exportblock_read>
+        </resources>
+        <blocks>
+            <exportblock>
+                <class>Magazento_Exportblock_Block</class>
+            </exportblock>
+        </blocks>
+        <helpers>
+            <exportblock>
+                <class>Magazento_Exportblock_Helper</class>
+            </exportblock>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <exportblock>
+                <use>admin</use>
+                <args>
+                    <module>Magazento_Exportblock</module>
+                    <frontName>exportblock</frontName>
+                </args>
+            </exportblock>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <exportblock>
+                    <file>magazento_exportblock.xml</file>
+                </exportblock>
+            </updates>
+        </layout>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <exportblock translate="title">
+                            <title>Export StaticBlocks</title>
+                            <children>
+                                <item translate="title">
+                                    <title>Export</title>
+                                </item>
+                                <item translate="title">
+                                    <title>Import</title>
+                                </item>
+                            </children>
+                            <sort_order>65</sort_order>
+                        </exportblock>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <exportblock>
+                                            <title>exportblock</title>
+                                            <sort_order>101</sort_order>
+                                        </exportblock>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <menu>
+            <system translate="title" module="exportblock">
+                <title>System</title>
+                <children>
+                    <exportblock translate="title" module="exportblock">
+                        <title>Import/Export Static Blocks </title>
+                        <sort_order>0</sort_order>
+                        <children>
+                            <item translate="title" module="exportblock">
+                                <title>Export</title>
+                                <action>exportblock/admin_item/</action>
+                                <resource>exportblock/admin/item</resource>
+                            </item>
+                            <import translate="title" module="exportblock">
+                                <title>Import</title>
+                                <action>exportblock/admin_import/</action>
+                                <resource>exportblock/admin/import</resource>
+                            </import>
+                        </children>                        
+                    </exportblock>
+                </children>
+            </system>
+        </menu>
+    </adminhtml>
+</config>
